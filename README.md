@@ -5,22 +5,48 @@ This is an experiment in using software development processes like
 [_one step build_](http://www.joelonsoftware.com/articles/fog0000000043.html) 
 for a seismic interpretation project.
 
-Check out the build output for the [2D survey map](./2DNavigationLinesA-E.geojson)
+Check out the build output for the [2D survey map](./2DNavigationLinesA-E.geojson).
 
 ## Getting started
 
-#### Environment
+You can run this experiment on your own machine, or a cloud development environment.
+
+### Cloud Environment
+
+- [Clone in Cloud9](https://c9.io/auth/github?r=https://c9.io/open/?clone_url=git@github.com:softwareunderground/TeapotDome.git)
+- In the terminal run:
+
+```
+npm install
+jake
+```
+
+### Local Environment
+
+You need the following tools installed:
 
 - [git](https://git-scm.com)
 - [git-lfs](https://git-lfs.github.com)
 - [node](https://nodejs.org) (including [npm](https://www.npmjs.com))
 
 #### Clone the repo, install dependencies and build
+
+From the command line:
     
-    git clone https://github.com/jfoshee/TeapotDome.git
+    git clone https://github.com/softwareunderground/TeapotDome.git
     cd TeapotDome
     npm install
     npm run build
+
+## Observation
+
+After cloning, observe that files that represent source field data are inside the `source` directory.  While code and byproducts are outside of that directory.
+
+Try changing X and Y values in `/source/2D_Seismic/2DNavigationLinesA-E.txt`.
+Then run `npm run build` again (or just `jake` if on Cloud9). Observe that the GEOjson was regenerated. (Hint: use `git diff`.)
+Then, run the build a second time without making changes. Observe that the build did not need to update the GEOjson file.
+
+The idea is that dependent data can be updated in a single step when new input data is updated. (Doing this in an even more automatic fashion is called [Build Automation](https://en.wikipedia.org/wiki/Build_automation).)
 
 ## Attribution
 
